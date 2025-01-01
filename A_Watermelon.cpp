@@ -1,19 +1,19 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-
-//Speed
-#define fastio() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-
-int32_t main()
+int main()
 {
     int w;
-    int half = w/2;
-    if(half&1){
+    cin>>w;
+    if(w==2){
         cout<<"NO"<<endl;
     }
-    else{
+    else if(w%2==0){
         cout<<"YES"<<endl;
     }
-    fastio()
-    return 0;
+    else{
+        cout<<"NO"<<endl;
+    }
+ 
+
+return 0;
 }
