@@ -1,59 +1,59 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
-//Speed
-#define fastio() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+void hehe()
+{
+    int n, m;
+    cin >> n >> m;
 
+    vector<int> x(n), y(n);
+    int curr_x = 0, curr_y = 0;
+    vector<pair<int, int>> positions;
 
-long long hehe(long long n,long long m,vector<pair<long long,long long>> &moves){
-    set<pair<long long,long long>> colored;
-    long long currx=0;
-    long long curry=0;
-    for(auto it:moves){
-        currx+=it.first;
-        curry+=it.second;
-
-        for (long long i = 0; i < m; i++)
-        {
-            for (long long j = 0; j < m; j++)
-            {
-                colored.insert({currx + i, curry + j});
-            }
-        }
-    }
-
-    long long perimeter = 0;
-    const long long dx[] = {0, 0, 1, -1};
-    const long long dy[] = {1, -1, 0, 0};
-
-    for (const auto &point : colored)
+    for (int i = 0; i < n; i++)
     {
-        for (long long i = 0; i < 4; i++)
-        {
-            pair<long long, long long> adj = {point.first + dx[i], point.second + dy[i]};
-            if (colored.find(adj) == colored.end())
-            {
-                perimeter++;
-            }
-        }
+        int dx, dy;
+        cin >> dx >> dy;
+
+        curr_x += dx;
+        curr_y += dy;
+
+        positions.emplace_back(curr_x, curr_y);
     }
 
-    return perimeter;
+    int min_x = positions[0].first, max_x = positions[0].first;
+    int min_y = positions[0].second, max_y = positions[0].second;
+
+    for (auto [x, y] : positions)
+    {
+        min_x = min(min_x, x);
+        max_x = max(max_x, x);
+        min_y = min(min_y, y);
+        max_y = max(max_y, y);
+    }
+
+    int width = max_x - min_x + m;
+    int height = max_y - min_y + m;
+
+    int perimeter = 2 * (width + height);
+
+    cout << perimeter << "\n";
 }
 
-int32_t main()
+int main()
 {
-    long long t;
-    cin>>t;
-    while(t-->0){
-        long long n,m;
-        cin>>n>>m;
-        vector<pair<long long,long long>> moves(n);
-        for(long long i=0;i<n;i++){
-            cin>>moves[i].first>>moves[i].second;
-        }
-        cout<<hehe(n,m,moves)<<endl;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        hehe();
     }
-    fastio()
+
     return 0;
 }

@@ -19,6 +19,7 @@
     "regex": "cpp",
     "random": "cpp",
     "complex": "cpp",
-    "numeric": "cpp"
+    "numeric": "cpp",
+    "functional": "cpp"
   }
 }
