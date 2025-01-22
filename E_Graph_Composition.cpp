@@ -61,20 +61,13 @@ void solve()
     {
         int u, v;
         cin >> u >> v;
-        // if (u > v)
-        //     swap(u, v);
         edges.push_back({u, v});
     }
-    // sort(all(edges));
-    // sort(edges.begin(), edges.end());
-    // vpii edges1;
     vector<pair<int, int>> edges1;
     for (int i = 0; i < m2; i++)
     {
         int u, v;
         cin >> u >> v;
-        // if (u > v)
-        //     swap(u, v);
         edges1.push_back({u, v});
     }
     DSU g(n + 3);
