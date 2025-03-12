@@ -46,7 +46,7 @@ int32_t main()
         long long ans_or = 0;
         long long start = 0;
 
-        long long limit = (1 << (right))-1;
+        long long limit = (1 << (right))-1; // 2^right-1 // 3
         // cout<<"limit"<<limit<<endl;
         for (long long i = 0; i <= min(n-1, limit); i++)
         {
@@ -71,3 +71,11 @@ int32_t main()
     }
     fastio() return 0;
 }
+
+
+n=9
+x=11
+
+x=1011
+
+0 1 2 3 11 11 11 11 11 === 11
