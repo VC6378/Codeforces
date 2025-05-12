@@ -25,9 +25,6 @@ int32_t main()
             if(mp[a[i]]==1){
                 len[i]=len[i-1]+1;
             }
-            else{
-                len[i] = len[i-1];
-            }
         }
 
         long long maxi = *max_element(len.begin(),len.end());
