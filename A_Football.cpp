@@ -1,28 +1,36 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
 using namespace std;
 
-//Speed
-#define fastio() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-
-int32_t main()
+int main()
 {
-    int n;
-    cin>>n;
-    unordered_map<string,int> mp;
-    while(n-->0){
-        string s;
-        cin>>s;
-        mp[s]++;
-    }
-    int maxFreq=-1;
-    string ans="";
-    for(auto x:mp){
-        if(x.second>maxFreq){
-            maxFreq=x.second;
-            ans=x.first;
+    string s;
+    cin >> s;
+
+    int count = 1;
+    bool dangerous = false;
+
+    for (size_t i = 1; i < s.length(); ++i)
+    {
+        if (s[i] == s[i - 1])
+        {
+            count++;
+            if (count >= 7)
+            {
+                dangerous = true;
+                break;
+            }
+        }
+        else
+        {
+            count = 1;
         }
     }
-    cout<<ans<<endl;
-    fastio()
+
+    if (dangerous)
+        cout << "YES" << endl;
+    else
+        cout << "NO" << endl;
+
     return 0;
 }
