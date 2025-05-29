@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Speed
+//Speed
 #define fastio() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
 
 int32_t main()
@@ -18,9 +18,8 @@ int32_t main()
             for (int i = 0; i < n; i++)
             {
                 cout << (-1) << " ";
-                // cout<<"hehe"<<" ";
             }
-            cout << endl;
+            cout<<endl;
         }
         else
         {
@@ -48,10 +47,10 @@ int32_t main()
             for (int i = 0; i < n; i++)
             {
                 cout << ans[i] << " ";
-                // cout<<"where"<<" ";
             }
-            cout << endl;
+            cout<<endl;
         }
     }
-    fastio() return 0;
+    fastio()
+    return 0;
 }
