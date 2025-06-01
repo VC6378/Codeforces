@@ -6,13 +6,13 @@ using namespace std;
 
 int32_t main()
 {
-    int n,m,a;
+    long long n,m,a;
     cin>>n>>m>>a;
-    int nn = n/a;
+    long long nn = n/a;
     if(n%a!=0){
         nn++;
     }
-    int mm = m/a;
+    long long mm = m/a;
     if(m%a!=0){
         mm++;
     }
