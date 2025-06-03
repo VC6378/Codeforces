@@ -1,72 +1,76 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
-//Speed
-#define fastio() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+vector<int> nums(2e5 + 5, 0);
 
-long long f(vector<long long> &a){
-    unordered_set<long long> s;
-    for(long long i=0;i<a.size();i++){
-        s.insert(a[i]);
-    }
-    long long mx = 0;
-    while(s.find(mx)!=s.end()){
-        mx++;
-    }
-    return mx;
-}
-
-bool check(long long x,vector<long long> &a,long long k){
-    if(x==0) return true;
-    long long req = x;
-    vector<long long>cnt(req,0);
-    long long seg= 0;
-    long long curr=0;
-    for(auto it:a){
-        if(it<req){
-            cnt[it]++;
-            if(cnt[it]==1){
-                curr++;
-            }
-        }
-        if(curr== req){
-            seg++;
-            for(long long i=0;i<req;i++){
-                cnt[i]=0;
-            }
-            curr=0;
-        }
-    }
-    return seg>=k;
-}
-
-int32_t main()
+bool check(vector<int> &v, int k, int m)
 {
-    long long t;
-    cin>>t;
-    while(t-->0){
-        long long n,k;
-        cin>>n>>k;
-        vector<long long> a(n);
-        for(long long i=0;i<n;i++){
-            cin>>a[i];
+    int cnt = 0;
+    int cur_mex = 0;
+    for (int i = 0; i < v.size(); i++)
+    {
+        if (v[i] <= v.size() + 1)
+        {
+            nums[v[i]] = 1;
         }
-        long long mx = f(a);
-        long long low = 0;
-        long long high = mx;
-        long long ans=0;
-        while(low<=high){
-            long long mid = low+(high-low)/2;
-            if(check(mid,a,k)){
-                ans=mid;
-                low=mid+1;
-            }
-            else{
-                high=mid-1;
-            }
+        while (nums[cur_mex])
+        {
+            cur_mex++;
         }
-        cout<<ans<<endl;
+        if (cur_mex >= m)
+        {
+            cnt++;
+            for (int j = 0; j < min(m + 1, (int)v.size() + 2); j++)
+            {
+                nums[j] = 0;
+            }
+            cur_mex = 0;
+        }
     }
-    fastio()
+    for (int j = 0; j < v.size() + 2; j++)
+    {
+        nums[j] = 0;
+    }
+    return cnt >= k;
+}
+
+void solve()
+{
+    int n, k;
+    cin >> n >> k;
+
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> v[i];
+    }
+
+    int l = 0;
+    int r = 1e9;
+    while (r - l > 1)
+    {
+        int m = (r + l) / 2;
+        if (check(v, k, m))
+        {
+            l = m;
+        }
+        else
+        {
+            r = m;
+        }
+    }
+
+    cout << l << '\n';
+}
+
+signed main()
+{
+    int t;
+    cin >> t;
+    for (int i = 0; i < t; i++)
+    {
+        solve();
+    }
     return 0;
 }
